@@ -1,0 +1,1 @@
+﻿gui/notes_panel.gui = notes_panel

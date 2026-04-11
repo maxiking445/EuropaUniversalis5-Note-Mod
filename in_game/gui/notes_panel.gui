@@ -1,0 +1,87 @@
+﻿#=======Decisions panel template by Lvtoumao========
+widget = {
+	name = "notes_panel"
+
+	visible = "[GetVariableSystem.Exists('notes_panel')]"
+	layer = top
+	size = { 100% 100% }
+	alwaystransparent = yes
+	using = layoutpolicy_expanding
+
+	window = {
+		using = bg_window_default_alt
+		using = layoutpolicy_expanding
+
+		name = "notes_panel_window"
+		datacontext = "[GetPlayer]"
+		datacontext = "[GetVariableSystem]"
+        
+		size = { 25% 70% }
+		layoutpolicy_horizontal = expanding
+		layoutpolicy_vertical = expanding
+
+		widget = {
+			size = { 100% 40 }
+			parentanchor = hleft|top
+			hbox = {
+				header_title = {
+					block "header_text" {
+						text = "NOTE_PANEL_TT"
+					}
+				}
+			}
+			widget = {
+				parentanchor = right|vcenter
+				size = { 40 40 }
+
+				ui_direction_button_holder_right = {}
+
+				ui_direction_button_alt = {
+					parentanchor = right|vcenter
+					using = bg_button_light_alt_round
+
+					onclick = "[GetVariableSystem.Toggle('notes_panel')]"
+					down = "[GetVariableSystem.Toggle('notes_panel')]"
+
+					blockoverride "button_texture" {
+						texture = "gfx/interface/buttons/flats/close_button_alt.dds"
+						texture_density = 2
+					}
+				}	
+			}
+			expand = { }
+		}
+
+vbox = {
+	position = { 0 50 }
+	size = { 100% 90% }
+	layoutpolicy_vertical = expanding
+
+	background = {
+		texture = "gfx/interface/component_tiles/side_menus/side_scrollwidget_bckg.dds"
+		texture_density = 2
+		spriteType = corneredstretched
+		spriteborder = { 20 20 }
+		using = color_dark_blue
+	}
+
+	widget = {
+		size = { 100% 100% }
+
+		editor_textinput = {
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+
+			name = "text_display"
+
+			fontsize = 14
+			fontcolor = { 1 1 1 1 }
+
+			using = dialog_property_size
+
+			text = "My notes..."
+		}
+	}
+}
+	}
+}
