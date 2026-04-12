@@ -1,6 +1,5 @@
 ﻿widget = {
 	name = "notes_panel"
-
 	visible = "[GetVariableSystem.Exists('notes_panel')]"
 	layer = top
 	size = { 100% 100% }
@@ -12,8 +11,6 @@
 		using = layoutpolicy_expanding
 
 		name = "notes_panel_window"
-		datacontext = "[GetPlayer]"
-		datacontext = "[GetVariableSystem]"
         
 		size = { 25% 70% }
 		layoutpolicy_horizontal = expanding
@@ -21,7 +18,6 @@
 
 		widget = {
 			size = { 100% 40 }
-			parentanchor = hleft|top
 			hbox = {
 				header_title = {
 					block "header_text" {
@@ -29,47 +25,76 @@
 					}
 				}
 			}
-			widget = {
-				parentanchor = right|vcenter
-				size = { 40 40 }
-
-				ui_direction_button_holder_right = {}
-
-				ui_direction_button_alt = {
-					parentanchor = right|vcenter
-					using = bg_button_light_alt_round
-
-					onclick = "[GetVariableSystem.Toggle('notes_panel')]"
-					down = "[GetVariableSystem.Toggle('notes_panel')]"
-
-					blockoverride "button_texture" {
-						texture = "gfx/interface/buttons/flats/close_button_alt.dds"
-						texture_density = 2
-					}
-				}	
-			}
 			expand = { }
 		}
 
 vbox = {
 	position = { 0 50 }
-	size = { 100% 90% }
+	size = { 100% -60 }
+	layoutpolicy_horizontal = expanding
 	layoutpolicy_vertical = expanding
-	editor_textinput = {
-				layoutpolicy_horizontal = expanding
-				layoutpolicy_vertical = expanding
+	spacing = 10
 
-				name = "text_display"
 
-				fontsize = 14
-				fontcolor = { 1 1 1 1 }
+	hbox = {
+		margin = { 0 0 }
+		spacing = 10
+		layoutpolicy_horizontal = expanding
+		layoutpolicy_vertical = preferred
 
-				using = dialog_property_size
-align = left|top
-multiline = yes 
-				text = "My notes..."
+		block "message_template_buttons" {
+
+			button_regular_diamond = {
+				name = "load_notes_button"
+				tooltip_enabled = no
+				text = "LOAD"
+
+				using = button_resize_to_fit_text
+				using = snd_UI_popup_confirm
+
+				layoutpolicy_horizontal = preferred
+				layoutpolicy_vertical = preferred
+
+				onclick = "[ExecuteConsoleCommand(Concatenate(GetPlayer.GetTag, Concatenate(' = { set_variable = { name = temp_load value = [GetVariable(\\\"notes_', Concatenate(GetPlayer.GetTag, '\\\")] } }')))]"
 			}
-	
+
+			button_regular_diamond = {
+				name = "save_notes_button"
+				tooltip_enabled = no
+				text = "SAVE"
+
+				using = button_resize_to_fit_text
+				using = snd_UI_popup_confirm
+
+				layoutpolicy_horizontal = preferred
+				layoutpolicy_vertical = preferred
+
+				onclick = "[ExecuteConsoleCommand(Concatenate(GetPlayer.GetTag, ' = { set_variable = { name = notes_content value = \"', Concatenate(GetVariableSystem.Get(Concatenate('notes_', GetPlayer.GetTag)), '\" } }'))]"
+			}
 		}
 	}
+
+	editor_textinput = {	
+		layoutpolicy_horizontal = expanding
+		layoutpolicy_vertical = expanding
+
+		name = "text_display"
+
+		fontsize = 14
+		fontcolor = { 1 1 1 1 }
+
+		using = dialog_property_size
+		
+		text = "[GetVariableSystem.Get(Concatenate('notes_', GetPlayer.GetTag))]"
+
+		ontextchanged = "[GetVariableSystem.Set('notes_content', GetTextFromSelfOrAnyChildEditbox(PdxGuiWidget.Self))]"
+
+		align = left|top
+		multiline = yes
+	}
+
+
+
+}
+}
 }

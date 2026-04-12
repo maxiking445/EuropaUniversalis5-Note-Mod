@@ -201,7 +201,6 @@ types RightPanelTypes
 						using = layoutpolicy_expanding
 
 						onclick = "[GetVariableSystem.Toggle('notes_panel')]"
-						down = "[GetVariableSystem.Toggle('notes_panel')]"
 
 						tooltipwidget = {
 							ConceptTooltipType = {
