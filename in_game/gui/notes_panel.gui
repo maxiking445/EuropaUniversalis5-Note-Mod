@@ -86,7 +86,7 @@ vbox = {
 		text = "[GetVariableSystem.Get(Concatenate('notes_', GetPlayer.GetTag)))]"
 
 
-		ontextchanged = "[GetVariableSystem.Set(Concatenate('notes_', GetPlayer.GetTag))), GetTextFromSelfOrAnyChildEditbox(PdxGuiWidget.Self))]"
+		ontextchanged = "[GetVariableSystem.Set(Concatenate('notes_', GetPlayer.GetTag), GetTextFromSelfOrAnyChildEditbox(PdxGuiWidget.Self))]"
 
 		align = left|top
 		multiline = yes
