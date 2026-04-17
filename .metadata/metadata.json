@@ -1,10 +1,10 @@
 ﻿{
-	"name":	"Europa Universalis Note GUI",
-	"id":	"DangerousOrange.EU5NoteGUI",
+	"name":	"Euroopa Universalis Note Mod",
+	"id":	"orange.mod",
 	"version":	"0.1",
-	"supported_game_version":	"1.1",
-	"short_description":	"Europa Universalis Note GUI Mod enables you to take notes during the Game. Made forMP games where I tend to forgot all my evils plans ;) ",
-	"tags":	["User Interface", "Utilities"],
+	"supported_game_version":	"1.1.0",
+	"short_description":	"TestMod",
+	"tags":	["User Interface"],
 	"relationships":	[],
 	"game_custom_data":	{
 }

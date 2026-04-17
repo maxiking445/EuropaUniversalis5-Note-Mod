@@ -41,35 +41,6 @@ vbox = {
 		spacing = 10
 		layoutpolicy_horizontal = expanding
 		layoutpolicy_vertical = preferred
-
-		block "message_template_buttons" {
-
-			button_regular_diamond = {
-				name = "save_notes_button"
-				tooltip_enabled = no
-				text = "SAVE"
-
-				using = button_resize_to_fit_text
-				using = snd_UI_popup_confirm
-
-				layoutpolicy_horizontal = preferred
-				layoutpolicy_vertical = preferred
-				onclick = "[ExecuteConsoleCommand(
-				Concatenate(
-					'effect c:',
-					Concatenate(
-						GetPlayer.GetTag,
-						Concatenate(
-							' = { set_variable = { name = notes_TUR value = \"',
-							Concatenate(
-								GetTextFromSelfOrAnyChildEditbox(PdxGuiWidget.Self),
-								'\" } }'
-							)
-						)
-					)
-				))]"
-			}
-		}
 	}
 
 	editor_textinput = {	
